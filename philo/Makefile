@@ -1,12 +1,22 @@
-Name = philo
+NAME = philo
 CC = gcc
-flags = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -f
+
+SRC =	philo.c \
+
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
 clean:
+	$(RM) $(OBJ)
 
 fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
 
