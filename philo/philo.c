@@ -14,7 +14,10 @@
 
 int	ft_init(int argc, char **argv, t_t *t)
 {
-
+	if (argc < 6 || argc > 7)
+		return (1);
+	t->philos = ft_atoi(argv[1]);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -22,6 +25,6 @@ int	main(int argc, char **argv)
 	t_t	t;
 
 	if (ft_init(argc, argv, &t))
-		ft_error();
+		return (1);
 	return (0);
 }

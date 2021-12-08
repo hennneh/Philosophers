@@ -4,6 +4,7 @@ CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 SRC =	philo.c \
+		utils.c \
 
 OBJ = $(SRC:.c=.o)
 

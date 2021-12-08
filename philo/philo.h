@@ -16,4 +16,17 @@
 # include <stdio.h>
 # include <pthread.h>
 
+typedef struct s_t
+{
+	int	philos;
+	int	cycles;
+	int	tts;
+	int	tte;
+	int	ttd;
+	int	eaten;
+	float	time;
+}	t_t;
+
+int	ft_atoi(const char *nptr);
+
 #endif
