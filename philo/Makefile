@@ -5,6 +5,7 @@ RM = rm -f
 
 SRC =	philo.c \
 		utils.c \
+		check.c \
 
 OBJ = $(SRC:.c=.o)
 

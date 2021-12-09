@@ -6,31 +6,11 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 19:35:53 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 11:48:28 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/09 14:26:54 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	ft_check(int argc, char **argv)
-{
-	int	i;
-	int	j;
-
-	j = 1;
-	while (j < argc)
-	{
-		i = 0;
-		while (argv[j][i])
-		{
-			if (argv[j][i] < 48 || argv[j][i] > 57)
-				return (1);
-			i++;
-		}
-		j++;
-	}
-	return (0);
-}
 
 int	ft_init(int argc, char **argv, t_t *t)
 {
