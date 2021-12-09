@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:32:57 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 17:53:46 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/09 21:48:50 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,33 @@
 # include <stdlib.h>
 # include <unistd.h>		//remove after testing aöksdjföaskjdföajksdöfjkasöldkjfalöskdjflöaskdjfölaskdjf
 
-typedef struct s_t
-{
-	int				np;
-	int				t2d;
-	int				t2e;
-	int				t2s;
-	int				mls; //how many times to eat aka meals
-	struct timeval	st; //starting time of the program
-	pthread_t		*p; //array for the threads aka philosophers
-	pthread_mutex_t	*f;
-}	t_t;
+struct	s_table;
 
 typedef struct s_philo
 {
-	int	meals_eaten;
-	int	last_meal_time;
-	struct timeval	currenttime;
-	t_t	*t;
-	int		*id;
+	int		fork_one;
+	int		fork_two;
+	int		nb_meals;
+	int		id;
+	long long	last_meal;
+	pthread_t	thread_id;
+	struct s_table	table;
 }	t_philo;
+
+typedef struct s_table
+{
+	int				nb_phil;
+	int				t2die;
+	int				t2eat;
+	int				t2sleep;
+	int				nb_meals;
+	long long		start_time;
+	int				dead;
+	int				full;
+	pthread_mutex_t	*fork;
+	pthread_mutex_t	check_meal;
+	t_philo			*philo;
+}	t_table;
 
 int		ft_atoi(const char *nptr);
 long	ft_atol(char *s);
