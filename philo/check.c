@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 14:23:55 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 14:37:21 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:40:08 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_check(int argc, char **argv)
 	int	j;
 
 	j = 1;
+	if (argc < 5 || argc > 6)
+		return (1);
 	while (j < argc)
 	{
 		i = 0;
@@ -50,4 +52,16 @@ int	ft_check(int argc, char **argv)
 	if (ft_isint(argc, argv))
 		return (1);
 	return (0);
+}
+
+void	ft_init(int argc, char **argv, t_t *t)
+{
+	t->np = ft_atoi(argv[1]);
+	t->t2d = ft_atoi(argv[2]);
+	t->t2e = ft_atoi(argv[3]);
+	t->t2s = ft_atoi(argv[4]);
+	if (argc == 6)
+		t->mls = ft_atoi(argv[5]);
+	else
+		t->mls = -1;
 }

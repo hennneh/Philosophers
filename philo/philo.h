@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:32:57 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 15:57:44 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/09 17:53:46 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 
 typedef struct s_t
 {
-	int				nphil;
+	int				np;
 	int				t2d;
 	int				t2e;
 	int				t2s;
-	int				nmeal; //how many times to eat aka meals
-	struct timeval	stime; //starting time of the program
-	pthread_t		*parr; //array for the threads aka philosophers
-	pthread_mutex_t	*frk;
+	int				mls; //how many times to eat aka meals
+	struct timeval	st; //starting time of the program
+	pthread_t		*p; //array for the threads aka philosophers
+	pthread_mutex_t	*f;
 }	t_t;
 
 typedef struct s_philo
@@ -37,11 +37,13 @@ typedef struct s_philo
 	int	last_meal_time;
 	struct timeval	currenttime;
 	t_t	*t;
+	int		*id;
 }	t_philo;
 
 int		ft_atoi(const char *nptr);
 long	ft_atol(char *s);
 int		ft_check(int argc, char **argv);
 size_t	ft_strlen(const char *str);
+void	ft_init(int argc, char **argv, t_t *t);
 
 #endif
