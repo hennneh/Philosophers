@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 19:35:53 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/08 16:05:41 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/09 11:48:28 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,12 @@ int	ft_init(int argc, char **argv, t_t *t)
 	return (0);
 }
 
-void	*routine()
+void	*routine(void *t)
 {
 	printf("test\n");
 	sleep(1);
 	printf("clemens\n");
+	((t_t *)t)->p = 9;
 	return (0);
 }
 
@@ -65,8 +66,14 @@ void	ft_create(t_t *t)
 	t->gl = malloc(sizeof(pthread_t) * t->p);
 	while (i < t->p)
 	{
-		pthread_create(&t->gl[i], NULL, &routine, NULL);
+		pthread_create(&t->gl[i], NULL, &routine, t);
 		i++;
+	}
+	i = 0;
+	t->f = malloc(sizeof(pthread_mutex_t) * t->p);
+	while (i < t->p)
+	{
+		
 	}
 	i = 0;
 	while (i < t->p)
