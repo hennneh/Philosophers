@@ -1,28 +1,26 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <unistd.h>
-
-char *s = "hello kostas";
-
-void	*routine()
-{
-	int i = 0;
-	while (i < 9)
-	{
-	write(1, &s[i], 1);
-	i++;
-	}
-	return (0);
-}
+#include <sys/time.h>
 
 int	main(void)
 {
-	pthread_t t1;
-	pthread_t t2;
+	struct timeval tyme;
 
-	pthread_create(&t1, NULL, &routine, NULL);
-	pthread_create(&t2, NULL, &routine, NULL);
-	pthread_join(t1, NULL);
-	pthread_join(t2, NULL);
+	gettimeofday(&tyme, NULL);
+	printf("%ld\n", tyme.tv_sec);
+	printf("%d\n", tyme.tv_usec);
+	sleep(1);
+	gettimeofday(&tyme, NULL);
+	printf("%ld\n", tyme.tv_sec);
+	printf("%d\n", tyme.tv_usec);
+	sleep(1);
+	gettimeofday(&tyme, NULL);
+	printf("%ld\n", tyme.tv_sec);
+	printf("%d\n", tyme.tv_usec);
+	sleep(1);
+	gettimeofday(&tyme, NULL);
+	printf("%ld\n", tyme.tv_sec);
+	printf("%d\n", tyme.tv_usec);
 	return (0);
 }

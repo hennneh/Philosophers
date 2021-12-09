@@ -73,7 +73,8 @@ void	ft_create(t_t *t)
 	t->f = malloc(sizeof(pthread_mutex_t) * t->p);
 	while (i < t->p)
 	{
-		
+		pthread_mutex_init(&t->f[i], NULL);
+		i++;
 	}
 	i = 0;
 	while (i < t->p)
