@@ -5,12 +5,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-struct timeval
-{
-	time_t		tv_sec;
-	suseconds_t	tv_usec;
-};
-
 typedef struct	s_table
 {
 	int				nb_philo;
@@ -21,3 +15,10 @@ typedef struct	s_table
 	long long		start_time;
 	struct timeval	time;
 }	t_table;
+
+int	ft_init(int argc, char **argv, t_table table);
+int	ft_atoi(const char *nptr);
+long	ft_atol(char *s);
+size_t	ft_strlen(const char *str);
+
+#endif
