@@ -6,5 +6,6 @@ int	main(int argc, char **argv)
 
 	if (ft_init(argc, argv, &table))
 		return (1);
+	printf("time: %lld\n", table.start_time);
 	return (0);
 }
