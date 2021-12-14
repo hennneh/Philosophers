@@ -46,6 +46,7 @@ long long	ft_time(struct timeval *time)
 {
 	long long	nbr;
 
+	nbr = time->tv_sec;
 	return (nbr);
 }
 

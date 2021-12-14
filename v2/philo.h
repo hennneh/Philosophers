@@ -16,7 +16,7 @@ typedef struct	s_table
 	struct timeval	time;
 }	t_table;
 
-int	ft_init(int argc, char **argv, t_table table);
+int	ft_init(int argc, char **argv, t_table *table);
 int	ft_atoi(const char *nptr);
 long	ft_atol(char *s);
 size_t	ft_strlen(const char *str);
