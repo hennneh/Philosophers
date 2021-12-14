@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 13:14:19 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/14 11:02:53 by hlehmann         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:29:51 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,4 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
-}
-
-long long	ft_get_time()
-{
-	
 }
