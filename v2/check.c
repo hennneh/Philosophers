@@ -48,7 +48,7 @@ long long	ft_time(struct timeval *time)
 
 	nbr = time->tv_sec;
 	nbr *= 1000;
-	nbr += time->tv_usec;						// this needs fixing
+	nbr += (time->tv_usec / 1000);
 	return (nbr);
 }
 
