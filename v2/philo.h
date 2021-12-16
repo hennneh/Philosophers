@@ -14,6 +14,7 @@ typedef struct	s_table
 	int				nb_meals;
 	long long		start_time;
 	struct timeval	time;
+	pthread_mutex_t	*forks;
 }	t_table;
 
 int	ft_init(int argc, char **argv, t_table *table);
