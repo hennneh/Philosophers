@@ -13,10 +13,20 @@ typedef struct	s_table
 	int				t2e;
 	int				t2s;
 	int				nb_meals;
+	int				full;
+	int				dead;
 	long long		start_time;
 	struct timeval	time;
 	pthread_mutex_t	*forks;
 }	t_table;
+
+typedef struct s_philo
+{
+	t_table		*table;
+	int			id;
+	int			meals;
+	long long	last_meal;
+}	t_philo;
 
 int	ft_init(int argc, char **argv, t_table *table);
 int	ft_atoi(const char *nptr);

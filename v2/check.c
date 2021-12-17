@@ -64,8 +64,8 @@ int	ft_init(int argc, char **argv, t_table *table)
 		table->nb_meals = ft_atoi(argv[5]);
 	else
 		table ->nb_meals = -1;
+	table->forks = malloc(sizeof(pthread_mutex_t) *table->nb_philo);
 	gettimeofday(&table->time, NULL);
 	table->start_time = ft_time(&table->time);
-	table->forks = malloc(sizeof(pthread_mutex_t) *table->nb_philo);
 	return (0);
 }
