@@ -52,6 +52,31 @@ long long	ft_time(struct timeval *time)
 	return (nbr);
 }
 
+void	*routine(void *philo)
+{
+	printf("test\n");
+	printf("id: %d\n", ((t_philo *)philo)->id);
+	return (0);
+}
+
+void	ft_create(t_table *table)
+{
+	pthread_t	*phils;
+	int			i;
+	t_philo		*philo;
+
+	i = 0;
+	phils = malloc(sizeof(pthread_t) * table->nb_philo);
+	philo = malloc(sizeof(t_philo) * table->nb_philo);
+	while (i < table->nb_philo)
+	{
+		philo[i].id = i;
+		philo[i].table = table;
+		pthread_create(&phils[i], NULL, &routine, &philo[i]);
+		i++;
+	}
+}
+
 int	ft_init(int argc, char **argv, t_table *table)
 {
 	if (ft_check(argc, argv))
@@ -67,5 +92,6 @@ int	ft_init(int argc, char **argv, t_table *table)
 	table->forks = malloc(sizeof(pthread_mutex_t) *table->nb_philo);
 	gettimeofday(&table->time, NULL);
 	table->start_time = ft_time(&table->time);
+	ft_create(table);
 	return (0);
 }
