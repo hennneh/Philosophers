@@ -42,13 +42,15 @@ int	ft_check(int argc, char **argv)
 	return (0);
 }
 
-long long	ft_time(struct timeval *time)
+long long	ft_time(void)
 {
-	long long	nbr;
+	long long		nbr;
+	struct timeval	time;
 
-	nbr = time->tv_sec;
+	gettimeofday(&time, NULL);
+	nbr = time.tv_sec;
 	nbr *= 1000;
-	nbr += (time->tv_usec / 1000);
+	nbr += (time.tv_usec / 1000);
 	return (nbr);
 }
 
@@ -83,8 +85,7 @@ int	ft_init(int argc, char **argv, t_table *table)
 	else
 		table ->nb_meals = -1;
 	table->forks = malloc(sizeof(pthread_mutex_t) *table->nb_philo);
-	gettimeofday(&table->time, NULL);
-	table->start_time = ft_time(&table->time);
+	table->start_time = ft_time();
 	ft_create(table);
 	return (0);
 }

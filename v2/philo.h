@@ -17,7 +17,6 @@ typedef struct	s_table
 	int				full;
 	int				dead;
 	long long		start_time;
-	struct timeval	time;
 	pthread_mutex_t	*forks;
 }	t_table;
 
@@ -27,6 +26,7 @@ typedef struct s_philo
 	int			id;
 	int			meals;
 	long long	last_meal;
+	long long	current_time;
 }	t_philo;
 
 int	ft_init(int argc, char **argv, t_table *table);
@@ -34,5 +34,6 @@ int	ft_atoi(const char *nptr);
 long	ft_atol(char *s);
 size_t	ft_strlen(const char *str);
 void	*routine(void *philo);
+long long	ft_time(void);
 
 #endif
