@@ -52,13 +52,6 @@ long long	ft_time(struct timeval *time)
 	return (nbr);
 }
 
-void	*routine(void *philo)
-{
-	printf("test\n");
-	printf("id: %d\n", ((t_philo *)philo)->id);
-	return (0);
-}
-
 void	ft_create(t_table *table)
 {
 	pthread_t	*phils;

@@ -1,6 +1,7 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -32,5 +33,6 @@ int	ft_init(int argc, char **argv, t_table *table);
 int	ft_atoi(const char *nptr);
 long	ft_atol(char *s);
 size_t	ft_strlen(const char *str);
+void	*routine(void *philo);
 
 #endif
