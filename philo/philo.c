@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 19:35:53 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 18:02:10 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:17:28 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	ft_create(t_t *t)
 
 int	main(int argc, char **argv)
 {
-	t_t	t;
+	t_table	table;
 
-	if (ft_check(argc, argv))
+	if (check_input(argc, argv))
 		return (1);
-	ft_init(argc, argv, &t);
-	ft_create(&t);
+	init_struct(argc, argv, &table);
+	create_threads(&table);
 	return (0);
 }

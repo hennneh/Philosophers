@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:32:57 by hlehmann          #+#    #+#             */
-/*   Updated: 2021/12/09 21:48:50 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/01/31 14:20:01 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ struct	s_table;
 
 typedef struct s_philo
 {
-	int		fork_one;
-	int		fork_two;
-	int		nb_meals;
-	int		id;
-	long long	last_meal;
-	pthread_t	thread_id;
+	int				fork_one;
+	int				fork_two;
+	int				nb_meals;
+	int				id;
+	long long		last_meal;
+	pthread_t		thread_id;
 	struct s_table	table;
 }	t_philo;
 
@@ -51,6 +51,6 @@ int		ft_atoi(const char *nptr);
 long	ft_atol(char *s);
 int		ft_check(int argc, char **argv);
 size_t	ft_strlen(const char *str);
-void	ft_init(int argc, char **argv, t_t *t);
+void	init_struct(int argc, char **argv, t_table *table);
 
 #endif
