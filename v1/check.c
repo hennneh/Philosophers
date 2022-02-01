@@ -1,4 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 08:28:15 by hlehmann          #+#    #+#             */
+/*   Updated: 2022/02/01 09:47:20 by hlehmann         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
+
+long long	get_start_time(void)
+{
+	struct timeval	s_time;
+	long long		return_time;
+
+	gettimeofday(&s_time, NULL);
+	return_time = s_time.tv_sec * 1000 + s_time.tv_usec / 1000;
+	return (return_time);
+}
+
+int	init_struct(int argc, char **argv, t_table *table)
+{
+	table->nb_philo = ft_atoi(argv[1]);
+	table->ttd = ft_atoi(argv[2]);
+	table->tte = ft_atoi(argv[3]);
+	table->tts = ft_atoi(argv[4]);
+	if (argc == 6)
+		table->nb_meals = ft_atoi(argv[5]);
+	table->dead = 0;
+	table->full = 0;
+	table->start_time = get_start_time();
+}
 
 static int	ft_is_int(int argc, char **argv)
 {
@@ -18,7 +53,7 @@ static int	ft_is_int(int argc, char **argv)
 	return (0);
 }
 
-int	ft_check_value(int argc, char **argv)
+static int	check_value(int argc, char **argv)
 {
 	if (ft_atoi(argv[1]) < 2)
 		return (1);
@@ -57,7 +92,7 @@ int	check_input(int argc, char **argv)
 	}
 	if (ft_is_int(argc, argv))
 		return (1);
-	if (ft_check_value(argc, argv))
+	if (check_value(argc, argv))
 		return (1);
 	return (0);
 }
