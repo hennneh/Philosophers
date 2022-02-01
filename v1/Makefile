@@ -6,13 +6,13 @@
 #    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/01 08:28:22 by hlehmann          #+#    #+#              #
-#    Updated: 2022/02/01 10:34:36 by hlehmann         ###   ########.fr        #
+#    Updated: 2022/02/01 10:38:52 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-#CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 SRC =	philo.c \

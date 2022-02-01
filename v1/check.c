@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 08:28:15 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/01 09:47:20 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/02/01 10:38:40 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	init_struct(int argc, char **argv, t_table *table)
 	table->dead = 0;
 	table->full = 0;
 	table->start_time = get_start_time();
+	return (0);
 }
 
 static int	ft_is_int(int argc, char **argv)
