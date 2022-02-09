@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:03:10 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/09 09:03:13 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/02/09 09:11:25 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,19 @@ struct s_philo
 	t_prog			*program;
 };
 
-/*/////////////////////////////////////////////////////////////////////////////
-		ALL FUNCTIONS
-*//////////////////////////////////////////////////////////////////////////////
-
-/*-------------------- philosophers.c --------------------*/
-
 int			ph_exit(t_prog *program);
 int			ph_free(t_prog *program);
 //int		ph_is_valid(char *av);
 //int		ph_check_error(int ac, char **av);
 //int		main(int ac, char **av);
-
-/*-------------------- ph_init_and_finish.c --------------------*/
-
 //int		ph_check_end(t_prog *program);
 void		ph_wait_end_of_buffet(t_prog *program);
 void		ph_init_philo(t_prog *program);
 int			ph_init_program(int ac, char **av, t_prog *program);
-
-/*-------------------- ph_buffet.c --------------------*/
-
 void		ph_send_message(t_philo *philo, char *status);
 //void		ph_action(t_philo *philo, int id);
 //void		*ph_table(void *philo_ptr);
 int			ph_buffet(t_prog *program);
-
-/*-------------------- ph_utils.c --------------------*/
-
 void		ph_usleep(t_prog *program, uint64_t time_limit);
 uint64_t	ph_get_time(void);
 long		ft_atol(const char *str);
