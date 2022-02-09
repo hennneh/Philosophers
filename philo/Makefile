@@ -1,9 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/01 08:28:22 by hlehmann          #+#    #+#              #
+#    Updated: 2022/02/09 09:14:35 by hlehmann         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
-SRC =	philo.c \
+SRC =	main.c \
 		utils.c \
 		check.c \
 
@@ -20,6 +32,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+re:	fclean all
 
 .PHONY: all clean fclean re

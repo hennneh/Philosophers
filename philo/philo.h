@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 13:32:57 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/01/31 14:20:01 by hlehmann         ###   ########.fr       */
+/*   Created: 2022/02/01 08:28:28 by hlehmann          #+#    #+#             */
+/*   Updated: 2022/02/09 09:30:29 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,44 @@
 # define PHILO_H
 
 # include <stdio.h>
-# include <pthread.h>
-# include <sys/time.h>
 # include <stdlib.h>
-# include <unistd.h>		//remove after testing aöksdjföaskjdföajksdöfjkasöldkjfalöskdjflöaskdjfölaskdjf
+# include <sys/time.h>
+# include <pthread.h>
 
-struct	s_table;
+struct s_table;
 
 typedef struct s_philo
 {
-	int				fork_one;
-	int				fork_two;
+	int				number;
 	int				nb_meals;
-	int				id;
+	int				alive;
 	long long		last_meal;
 	pthread_t		thread_id;
-	struct s_table	table;
+	pthread_mutex_t	fork_one;
+	pthread_mutex_t	fork_two;
+	struct s_table	*table;
 }	t_philo;
 
 typedef struct s_table
 {
-	int				nb_phil;
-	int				t2die;
-	int				t2eat;
-	int				t2sleep;
+	int				nb_philo;
+	int				ttd;
+	int				tte;
+	int				tts;
 	int				nb_meals;
-	long long		start_time;
 	int				dead;
 	int				full;
-	pthread_mutex_t	*fork;
+	long long		start_time;
 	pthread_mutex_t	check_meal;
-	t_philo			*philo;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+	struct s_philo	*philo;
 }	t_table;
 
+int		check_input(int argc, char **argv);
+int		init_struct(int argc, char **argv, t_table *table);
 int		ft_atoi(const char *nptr);
 long	ft_atol(char *s);
-int		ft_check(int argc, char **argv);
 size_t	ft_strlen(const char *str);
-void	init_struct(int argc, char **argv, t_table *table);
 
 #endif
