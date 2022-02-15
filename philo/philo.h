@@ -39,12 +39,10 @@ typedef struct s_table
 	int				tte;
 	int				tts;
 	int				nb_meals;
-	int				dead;
 	int				full;
 	long long		start_time;
-	pthread_mutex_t	check_meal;
+	pthread_mutex_t	status;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
 	struct s_philo	*philo;
 }	t_table;
 

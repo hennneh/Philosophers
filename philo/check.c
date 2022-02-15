@@ -24,17 +24,25 @@ long long	get_start_time(void)
 
 int	init_struct(int argc, char **argv, t_table *table)
 {
+	int	i;
+
 	table->nb_philo = ft_atoi(argv[1]);
 	table->ttd = ft_atoi(argv[2]);
 	table->tte = ft_atoi(argv[3]);
 	table->tts = ft_atoi(argv[4]);
 	if (argc == 6)
 		table->nb_meals = ft_atoi(argv[5]);
-	table->dead = 0;
 	table->full = 0;
 	table->start_time = get_start_time();
 	table->forks = malloc(table->nb_philo * sizeof(pthread_mutex_t));
 	table->philo = malloc(table->nb_philo * sizeof(t_philo));
+	pthread_mutex_init(&table->status, NULL);
+	i = 0;
+	while (i < table->nb_philo)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		i++;
+	}
 	return (0);
 }
 

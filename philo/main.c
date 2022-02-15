@@ -30,7 +30,10 @@ int	main(int argc, char **argv)
 	t_table	table;
 
 	if (check_input(argc, argv))
+	{
+		printf("Error: Input\n");
 		return (1);
+	}
 	if (init_struct(argc, argv, &table))
 		return (1);
 	printf("%lld\n", table.start_time);
