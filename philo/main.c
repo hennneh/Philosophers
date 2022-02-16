@@ -19,7 +19,7 @@ int	start_threads(t_table *table)
 	i = 0;
 	while (i < table->nb_philo)
 	{
-		pthread_mutex_init(&table->forks[i], NULL);
+		pthread_create(&table->philo[i]->number, NULL, routine, table->philo[i]);
 		i++;
 	}
 	return (0);
