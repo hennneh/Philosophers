@@ -33,7 +33,6 @@ int	init_struct(int argc, char **argv, t_table *table)
 	if (argc == 6)
 		table->nb_meals = ft_atoi(argv[5]);
 	table->full = 0;
-	table->start_time = get_start_time();
 	table->forks = malloc(table->nb_philo * sizeof(pthread_mutex_t));
 	table->philo = malloc(table->nb_philo * sizeof(t_philo));
 	pthread_mutex_init(&table->status, NULL);

@@ -12,12 +12,14 @@
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -pthread
 RM = rm -f
 
 SRC =	main.c \
 		utils.c \
 		check.c \
+		actions.c \
+		end.c \
 
 OBJ = $(SRC:.c=.o)
 

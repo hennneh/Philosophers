@@ -19,7 +19,7 @@
 # include <pthread.h>
 # include <unistd.h>
 
-struct s_table;
+struct	s_table;
 
 typedef struct s_philo
 {
@@ -47,10 +47,17 @@ typedef struct s_table
 	struct s_philo	*philo;
 }	t_table;
 
-int		check_input(int argc, char **argv);
-int		init_struct(int argc, char **argv, t_table *table);
-int		ft_atoi(const char *nptr);
-long	ft_atol(char *s);
-size_t	ft_strlen(const char *str);
+int			check_input(int argc, char **argv);
+int			init_struct(int argc, char **argv, t_table *table);
+int			ft_atoi(const char *nptr);
+long		ft_atol(char *s);
+size_t		ft_strlen(const char *str);
+long long	get_start_time(void);
+void		naptime(t_philo *philo, int sleep);
+void		fork_action(t_philo *philo);
+void		food_action(t_philo *philo);
+void		bed_action(t_philo *philo);
+void		thought_action(t_philo *philo);
+int			check_status(t_table *table);
 
 #endif
