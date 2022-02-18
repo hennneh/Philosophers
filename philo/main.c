@@ -12,16 +12,61 @@
 
 #include "philo.h"
 
-int	start_threads(t_table *table)
+void	*routine(void *philo_ptr)
+{
+	t_philo	*philo;
+
+	philo = philo_ptr;
+	philo->number = 2;
+	printf("test %d\n", philo->number);
+	return (NULL);
+}
+
+void	init_philo(t_table *table)
 {
 	int	i;
+	t_philo	*philo;
 
 	i = 0;
 	while (i < table->nb_philo)
 	{
-		pthread_create(&table->philo[i]->number, NULL, routine, table->philo[i]);
+		philo = &table->philo[i];
+		philo->table = table;
+		philo->number = i + 1;
+		philo->last_meal = table->start_time;
+		philo->alive = 1;
+		philo->fork_one = table->forks[i];
+		i++;
+		philo->fork_two = table->forks[i % table->nb_philo];
+	}
+}
+
+void	wait_until_full(t_table *table)
+{
+	table->full = 1;
+	printf("waiting in main\n");
+}
+
+int	start_threads(t_table *table)
+{
+	int	i;
+	t_philo	*philo;
+
+	i = 0;
+	init_philo(table);
+	while (i < table->nb_philo)
+	{
+		philo = &table->philo[i];
+		if (pthread_create(&philo->thread_id, NULL, routine, philo))
+		{
+			pthread_mutex_lock(&table->status);
+			table->full = 1;
+			pthread_mutex_unlock(&table->status);
+			return (1);
+		}
 		i++;
 	}
+	wait_until_full(table);
 	return (0);
 }
 
