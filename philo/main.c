@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 08:28:08 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/09 09:26:56 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/02/18 16:12:22 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*routine(void *philo_ptr)
 	t_philo	*philo;
 
 	philo = philo_ptr;
-	philo->number = 2;
 	printf("test %d\n", philo->number);
 	return (NULL);
 }
@@ -44,6 +43,7 @@ void	init_philo(t_table *table)
 void	wait_until_full(t_table *table)
 {
 	table->full = 1;
+	usleep(10000);
 	printf("waiting in main\n");
 }
 
@@ -81,7 +81,6 @@ int	main(int argc, char **argv)
 	}
 	if (init_struct(argc, argv, &table))
 		return (1);
-	printf("%lld\n", table.start_time);
 	if (start_threads(&table))
 		return (1);
 	return (0);

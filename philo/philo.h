@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 08:28:28 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/09 09:30:29 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/02/18 16:12:55 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <unistd.h>
 
 struct s_table;
 
