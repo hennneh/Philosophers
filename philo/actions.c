@@ -7,13 +7,16 @@ void	naptime(t_philo *philo, int sleep)
 
 	gettimeofday(&time, NULL);
 	start = (time.tv_sec * 1000 + time.tv_usec / 1000);
-	while (get_start_time() - start < (long long)sleep)
+	if (philo->table->tte > 0)
+		start++;
+	usleep(sleep);
+/*	while (get_start_time() - start < (long long)sleep)
 	{
 		if (philo->table->nb_philo < 100)
 			usleep(100);
 		else
 			usleep(1000);
-	}
+	}*/
 }
 
 void	fork_action(t_philo *philo)

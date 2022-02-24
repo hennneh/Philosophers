@@ -42,7 +42,8 @@ void	init_philo(t_table *table)
 	int		i;
 	t_philo	*philo;
 
-	i = 0; while (i < table->nb_philo)
+	i = 0; 
+	while (i < table->nb_philo)
 	{
 		philo = &table->philo[i];
 		philo->table = table;

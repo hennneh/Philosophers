@@ -15,7 +15,7 @@ int	check_status(t_table *table)
 		philo = &table->philo[i];
 		if (table->nb_meals > -1 && philo->nb_meals < table->nb_meals)
 			end = -1;
-		if (ct - philo->last_meal > table->ttd)
+		if (ct - philo->last_meal > (long long)table->ttd)
 		{
 			table->full = 1;
 			ct = ct - philo->table->start_time;

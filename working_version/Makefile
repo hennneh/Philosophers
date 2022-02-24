@@ -5,26 +5,26 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/09 08:40:41 by hlehmann          #+#    #+#              #
-#    Updated: 2022/02/09 08:40:43 by hlehmann         ###   ########.fr        #
+#    Created: 2022/02/22 14:28:37 by hlehmann          #+#    #+#              #
+#    Updated: 2022/02/22 14:28:41 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-TH_FLAG = -lpthread
+FLAGS = -Wall -Werror -Wextra -pthread
+RM = rm -rf
+SRC =	main.c \
+		buffet.c \
+		utils.c \
+		init_and_finish.c
 
-SRC = main.c tools.c errors.c dinner.c inits.c libft_functions.c
-OBJ = ${SRC:.c=.o}
-
-RM = rm -f
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $(OBJ) $(TH_FLAG)
+	$(CC) $(FLAGS) $(SRC) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
