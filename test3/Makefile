@@ -5,36 +5,29 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/09 09:02:28 by hlehmann          #+#    #+#              #
-#    Updated: 2022/02/22 14:10:40 by hlehmann         ###   ########.fr        #
+#    Created: 2022/02/22 14:28:37 by hlehmann          #+#    #+#              #
+#    Updated: 2022/02/22 14:28:41 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-
-SRCS = main.c	utils.c	init_and_finish.c	buffet.c
-OBJS = $(SRCS:.c=.o)
-HEAD = philosophers.h
-
 CC = gcc
-CF = -Wall -Wextra -Werror
-CI = -I
-CS = -g -fsanitize=address
-CG = -g3
-
+FLAGS = -Wall -Werror -Wextra -pthread
 RM = rm -rf
+SRC =	main.c \
+		buffet.c \
+		utils.c \
+		init_and_finish.c
 
-all: ${NAME}
+OBJ = $(SRC:.c=.o)
 
-$(NAME): $(OBJS) $(HEAD) Makefile
-	$(CC) $(CF) $(OBJS) -o $(NAME)
+all: $(NAME)
 
-%.o: %.c $(HEAD) Makefile
-	$(CC) -c $(CF) $< -o $@
-
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) $(SRC) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
