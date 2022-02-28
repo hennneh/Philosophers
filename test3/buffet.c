@@ -14,7 +14,7 @@
 
 void	ph_send_message(t_philo *philo, char *status)
 {
-	uint64_t	current_time;
+	long long	current_time;
 
 	current_time = ph_get_time() - philo->program->time_at_start;
 	printf("%llu %d %s\n", current_time, philo->seat, status);

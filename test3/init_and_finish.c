@@ -16,7 +16,7 @@ static int	ph_check_end(t_prog *program)
 {
 	int			a;
 	int			end_with_plates;
-	uint64_t	current_time;
+	long long	current_time;
 	t_philo		*philo;
 
 	a = 0;
@@ -27,7 +27,7 @@ static int	ph_check_end(t_prog *program)
 		philo = &program->philo[a];
 		if (program->nb_plates > -1 && philo->plate_count < program->nb_plates)
 			end_with_plates = -1;
-		if (current_time - philo->time_of_last_plate > program->time_to_die)
+		if (current_time - philo->time_of_last_plate > (long long)program->time_to_die)
 		{
 			program->end_of_buffet = 1;
 			ph_send_message(philo, "died");
@@ -74,7 +74,7 @@ void	ph_init_philo(t_prog *program)
 	}
 }
 
-int	ph_init_program(int ac, char **av, t_prog *program)
+int	set_table(int ac, char **av, t_prog *program)
 {
 	int	a;
 

@@ -12,9 +12,9 @@
 
 #include "philosophers.h"
 
-void	ph_usleep(t_prog *program, uint64_t	time_limit)
+void	ph_usleep(t_prog *program, long long	time_limit)
 {
-	uint64_t	start;
+	long long	start;
 
 	start = ph_get_time();
 	while (ph_get_time() - start < time_limit / 1000)
@@ -26,7 +26,7 @@ void	ph_usleep(t_prog *program, uint64_t	time_limit)
 	}
 }
 
-uint64_t	ph_get_time(void)
+long long	ph_get_time(void)
 {
 	struct timeval	time;
 

@@ -84,7 +84,7 @@ int	main(int ac, char **av)
 
 	if (!ph_check_error(ac, av))
 	{
-		if (ph_init_program(ac, av, &program) == 1)
+		if (set_table(ac, av, &program) == 1)
 			return (1);
 		if (ph_buffet(&program) == 1)
 			return (ph_exit(&program));
