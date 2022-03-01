@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-void	ph_send_message(t_philo *philo, char *status)
+void	print_message(t_philo *philo, char *status)
 {
 	long long	current_time;
 
@@ -29,29 +29,29 @@ static void	ph_action(t_philo *philo, int id)
 		return ;
 	}
 	if (id == PH_FORK)
-		ph_send_message(philo, "has taken a fork");
+		print_message(philo, "has taken a fork");
 	else if (id == PH_EAT)
 	{
-		ph_send_message(philo, "is eating");
+		print_message(philo, "is eating");
 		philo->time_of_last_plate = ph_get_time();
 	}
 	else if (id == PH_SLEEP)
 	{
-		ph_send_message(philo, "is sleeping");
+		print_message(philo, "is sleeping");
 		philo->plate_count++;
 	}
 	else if (id == PH_THINK)
-		ph_send_message(philo, "is thinking");
+		print_message(philo, "is thinking");
 	pthread_mutex_unlock(&philo->program->status);
 }
 
-static void	*ph_table(void *philo_ptr)
+static void	*routine(void *philo_ptr)
 {
 	t_philo	*philo;
 
 	philo = philo_ptr;
 	if (philo->seat % 2 == 0)
-		ph_usleep(philo->program, philo->program->time_to_eat * 1000);
+		ph_usleep(philo->program, philo->program->tte * 1000);
 	while (!philo->program->end_of_buffet)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -61,11 +61,11 @@ static void	*ph_table(void *philo_ptr)
 		pthread_mutex_lock(philo->right_fork);
 		ph_action(philo, PH_FORK);
 		ph_action(philo, PH_EAT);
-		ph_usleep(philo->program, philo->program->time_to_eat * 1000);
+		ph_usleep(philo->program, philo->program->tte * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
 		ph_action(philo, PH_SLEEP);
-		ph_usleep(philo->program, philo->program->time_to_sleep * 1000);
+		ph_usleep(philo->program, philo->program->tts * 1000);
 		ph_action(philo, PH_THINK);
 	}
 	if (philo->left_fork == philo->right_fork)
@@ -73,7 +73,7 @@ static void	*ph_table(void *philo_ptr)
 	return (NULL);
 }
 
-int	ph_buffet(t_prog *program)
+int	ph_buffet(t_table *program)
 {
 	int		a;
 	t_philo	*philo;
@@ -84,7 +84,7 @@ int	ph_buffet(t_prog *program)
 	while (a < program->nb_philo)
 	{
 		philo = &program->philo[a];
-		if (pthread_create(&philo->thread_id, NULL, ph_table, philo))
+		if (pthread_create(&philo->thread_id, NULL, routine, philo))
 		{
 			pthread_mutex_lock(&program->status);
 			program->end_of_buffet = 1;

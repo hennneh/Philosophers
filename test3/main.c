@@ -12,38 +12,38 @@
 
 #include "philosophers.h"
 
-int	ph_exit(t_prog *program)
+int	ft_free(t_table *table)
+{
+	if (table->forks)
+		free (table->forks);
+	if (table->philo)
+		free (table->philo);
+	return (1);
+}
+
+int	ft_exit(t_table *table)
 {
 	int		a;
 	t_philo	*philo;
 
 	a = 0;
-	while (a < program->nb_philo)
+	while (a < table->nb_philo)
 	{
-		philo = &program->philo[a];
+		philo = &table->philo[a];
 		pthread_join(philo->thread_id, NULL);
 		a++;
 	}
 	a = 0;
-	while (a < program->nb_philo)
+	while (a < table->nb_philo)
 	{
-		pthread_mutex_destroy(&program->forks[a]);
+		pthread_mutex_destroy(&table->forks[a]);
 		a++;
 	}
-	pthread_mutex_destroy(&program->status);
-	return (ph_free(program));
+	pthread_mutex_destroy(&table->status);
+	return (ft_free(table));
 }
 
-int	ph_free(t_prog *program)
-{
-	if (program->forks)
-		free (program->forks);
-	if (program->philo)
-		free (program->philo);
-	return (1);
-}
-
-static int	ph_is_valid(char *av)
+static int	is_valid(char *av)
 {
 	int	a;
 
@@ -59,7 +59,7 @@ static int	ph_is_valid(char *av)
 	return (0);
 }
 
-static int	ph_check_error(int ac, char **av)
+static int	error_check(int ac, char **av)
 {
 	int	a;
 
@@ -71,7 +71,7 @@ static int	ph_check_error(int ac, char **av)
 	}
 	while (av[a])
 	{
-		if (ph_is_valid(av[a]) == 1)
+		if (is_valid(av[a]) == 1)
 			return (1);
 		a++;
 	}
@@ -80,16 +80,16 @@ static int	ph_check_error(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	t_prog	program;
+	t_table	table;
 
-	if (!ph_check_error(ac, av))
+	if (!error_check(ac, av))
 	{
-		if (set_table(ac, av, &program) == 1)
+		if (set_table(ac, av, &table) == 1)
 			return (1);
-		if (ph_buffet(&program) == 1)
-			return (ph_exit(&program));
+		if (ph_buffet(&table) == 1)
+			return (ft_exit(&table));
 	}
 	else
 		return (1);
-	return (ph_exit(&program) * 0);
+	return (ft_exit(&table) * 0);
 }

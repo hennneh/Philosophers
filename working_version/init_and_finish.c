@@ -30,7 +30,7 @@ static int	ph_check_end(t_prog *program)
 		if (current_time - philo->time_of_last_plate > program->time_to_die)
 		{
 			program->end_of_buffet = 1;
-			ph_send_message(philo, "died");
+			print_message(philo, "died");
 			return (0);
 		}
 		a++;

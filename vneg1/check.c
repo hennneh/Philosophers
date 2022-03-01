@@ -5,38 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 08:28:15 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/01 10:38:40 by hlehmann         ###   ########.fr       */
+/*   Created: 2021/12/09 14:23:55 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/12/09 21:55:44 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	get_start_time(void)
-{
-	struct timeval	s_time;
-	long long		return_time;
-
-	gettimeofday(&s_time, NULL);
-	return_time = s_time.tv_sec * 1000 + s_time.tv_usec / 1000;
-	return (return_time);
-}
-
-int	init_struct(int argc, char **argv, t_table *table)
-{
-	table->nb_philo = ft_atoi(argv[1]);
-	table->ttd = ft_atoi(argv[2]);
-	table->tte = ft_atoi(argv[3]);
-	table->tts = ft_atoi(argv[4]);
-	if (argc == 6)
-		table->nb_meals = ft_atoi(argv[5]);
-	table->dead = 0;
-	table->full = 0;
-	table->start_time = get_start_time();
-	return (0);
-}
-
-static int	ft_is_int(int argc, char **argv)
+int	ft_isint(int argc, char **argv)
 {
 	long	nbr;
 	int		i;
@@ -54,25 +30,7 @@ static int	ft_is_int(int argc, char **argv)
 	return (0);
 }
 
-static int	check_value(int argc, char **argv)
-{
-	if (ft_atoi(argv[1]) < 2)
-		return (1);
-	if (ft_atoi(argv[2]) < 0)
-		return (1);
-	if (ft_atoi(argv[3]) < 0)
-		return (1);
-	if (ft_atoi(argv[4]) < 0)
-		return (1);
-	if (argc == 6)
-	{
-		if (ft_atoi(argv[5]) < 1)
-			return (1);
-	}
-	return (0);
-}
-
-int	check_input(int argc, char **argv)
+int	ft_check(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -91,9 +49,21 @@ int	check_input(int argc, char **argv)
 		}
 		j++;
 	}
-	if (ft_is_int(argc, argv))
-		return (1);
-	if (check_value(argc, argv))
+	if (ft_isint(argc, argv))
 		return (1);
 	return (0);
+}
+
+void	ft_init(int argc, char **argv, t_t *t)
+{
+	t->nb_phil = ft_atoi(argv[1]);
+	t->t2d = ft_atoi(argv[2]);
+	t->t2e = ft_atoi(argv[3]);
+	t->t2s = ft_atoi(argv[4]);
+	t->mls = 0;
+	t->ded = 0;
+	if (argc == 6)
+		t->mls = ft_atoi(argv[5]);
+	else
+		t->mls = -1;
 }

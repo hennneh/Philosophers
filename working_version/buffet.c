@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-void	ph_send_message(t_philo *philo, char *status)
+void	print_message(t_philo *philo, char *status)
 {
 	uint64_t	current_time;
 
@@ -29,19 +29,19 @@ static void	ph_action(t_philo *philo, int id)
 		return ;
 	}
 	if (id == PH_FORK)
-		ph_send_message(philo, "has taken a fork");
+		print_message(philo, "has taken a fork");
 	else if (id == PH_EAT)
 	{
-		ph_send_message(philo, "is eating");
+		print_message(philo, "is eating");
 		philo->time_of_last_plate = ph_get_time();
 	}
 	else if (id == PH_SLEEP)
 	{
-		ph_send_message(philo, "is sleeping");
+		print_message(philo, "is sleeping");
 		philo->plate_count++;
 	}
 	else if (id == PH_THINK)
-		ph_send_message(philo, "is thinking");
+		print_message(philo, "is thinking");
 	pthread_mutex_unlock(&philo->program->status);
 }
 

@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-void	ph_usleep(t_prog *program, long long	time_limit)
+void	ph_usleep(t_table *program, long long time_limit)
 {
 	long long	start;
 

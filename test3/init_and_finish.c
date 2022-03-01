@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-static int	ph_check_end(t_prog *program)
+static int	ph_check_end(t_table *program)
 {
 	int			a;
 	int			end_with_plates;
@@ -27,10 +27,10 @@ static int	ph_check_end(t_prog *program)
 		philo = &program->philo[a];
 		if (program->nb_plates > -1 && philo->plate_count < program->nb_plates)
 			end_with_plates = -1;
-		if (current_time - philo->time_of_last_plate > (long long)program->time_to_die)
+		if (current_time - philo->time_of_last_plate > (long long)program->ttd)
 		{
 			program->end_of_buffet = 1;
-			ph_send_message(philo, "died");
+			print_message(philo, "died");
 			return (0);
 		}
 		a++;
@@ -40,7 +40,7 @@ static int	ph_check_end(t_prog *program)
 	return (1);
 }
 
-void	ph_wait_end_of_buffet(t_prog *program)
+void	ph_wait_end_of_buffet(t_table *program)
 {
 	while (1)
 	{
@@ -55,7 +55,7 @@ void	ph_wait_end_of_buffet(t_prog *program)
 	}
 }
 
-void	ph_init_philo(t_prog *program)
+void	ph_init_philo(t_table *program)
 {
 	int		a;
 	t_philo	*philo;
@@ -74,7 +74,7 @@ void	ph_init_philo(t_prog *program)
 	}
 }
 
-int	set_table(int ac, char **av, t_prog *program)
+int	set_table(int ac, char **av, t_table *program)
 {
 	int	a;
 
@@ -82,16 +82,16 @@ int	set_table(int ac, char **av, t_prog *program)
 	program->nb_philo = ft_atol(av[1]);
 	if (!program->nb_philo)
 		return (1);
-	program->time_to_die = ft_atol(av[2]);
-	program->time_to_eat = ft_atol(av[3]);
-	program->time_to_sleep = ft_atol(av[4]);
+	program->ttd = ft_atol(av[2]);
+	program->tte = ft_atol(av[3]);
+	program->tts = ft_atol(av[4]);
 	program->nb_plates = -1;
 	if (ac == 6)
 		program->nb_plates = ft_atol(av[5]);
 	program->forks = ft_calloc(program->nb_philo, sizeof(pthread_mutex_t));
 	program->philo = ft_calloc(program->nb_philo, sizeof(t_philo));
 	if (!program->forks || !program->philo)
-		return (ph_free(program));
+		return (ft_free(program));
 	pthread_mutex_init(&program->status, NULL);
 	a = 0;
 	while (a < program->nb_philo)

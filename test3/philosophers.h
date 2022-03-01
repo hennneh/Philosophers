@@ -29,15 +29,15 @@ correct utilisation is :\e[0m\n\
 # define PH_SLEEP 3
 # define PH_THINK 4
 
-typedef struct s_program	t_prog;
-typedef struct s_philo		t_philo;
+typedef struct s_table	t_table;
+typedef struct s_philo	t_philo;
 
-struct s_program
+struct s_table
 {
 	int				nb_philo;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
+	size_t			ttd;
+	size_t			tte;
+	size_t			tts;
 	int				nb_plates;
 	int				end_of_buffet;
 	long long		time_at_start;
@@ -55,23 +55,23 @@ struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	t_prog			*program;
+	t_table			*program;
 };
 
-int			ph_exit(t_prog *program);
-int			ph_free(t_prog *program);
-//int		ph_is_valid(char *av);
-//int		ph_check_error(int ac, char **av);
+int			ft_exit(t_table *program);
+int			ft_free(t_table *program);
+//int		is_valid(char *av);
+//int		error_check(int ac, char **av);
 //int		main(int ac, char **av);
-//int		ph_check_end(t_prog *program);
-void		ph_wait_end_of_buffet(t_prog *program);
-void		ph_init_philo(t_prog *program);
-int			set_table(int ac, char **av, t_prog *program);
-void		ph_send_message(t_philo *philo, char *status);
+//int		ph_check_end(t_table *program);
+void		ph_wait_end_of_buffet(t_table *program);
+void		ph_init_philo(t_table *program);
+int			set_table(int ac, char **av, t_table *program);
+void		print_message(t_philo *philo, char *status);
 //void		ph_action(t_philo *philo, int id);
-//void		*ph_table(void *philo_ptr);
-int			ph_buffet(t_prog *program);
-void		ph_usleep(t_prog *program, long long time_limit);
+//void		*routine(void *philo_ptr);
+int			ph_buffet(t_table *program);
+void		ph_usleep(t_table *program, long long time_limit);
 long long	ph_get_time(void);
 long		ft_atol(const char *str);
 void		ft_bzero(void *s, size_t n);

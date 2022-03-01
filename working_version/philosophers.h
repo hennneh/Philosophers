@@ -67,7 +67,7 @@ int			ph_free(t_prog *program);
 void		ph_wait_end_of_buffet(t_prog *program);
 void		ph_init_philo(t_prog *program);
 int			ph_init_program(int ac, char **av, t_prog *program);
-void		ph_send_message(t_philo *philo, char *status);
+void		print_message(t_philo *philo, char *status);
 //void		ph_action(t_philo *philo, int id);
 //void		*ph_table(void *philo_ptr);
 int			ph_buffet(t_prog *program);

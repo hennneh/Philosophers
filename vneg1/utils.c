@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 08:27:58 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/01 10:32:05 by hlehmann         ###   ########.fr       */
+/*   Created: 2021/12/09 13:14:19 by hlehmann          #+#    #+#             */
+/*   Updated: 2021/12/14 11:02:53 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,9 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+long long	ft_get_time()
+{
+	
 }
