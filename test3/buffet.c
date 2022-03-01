@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_buffet.c                                        :+:      :+:    :+:   */
+/*   buffet.c                      	                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,16 +16,16 @@ void	print_message(t_philo *philo, char *status)
 {
 	long long	current_time;
 
-	current_time = ph_get_time() - philo->program->time_at_start;
+	current_time = ft_get_time() - philo->table->time_at_start;
 	printf("%llu %d %s\n", current_time, philo->seat, status);
 }
 
-static void	ph_action(t_philo *philo, int id)
+static void	action(t_philo *philo, int id)
 {
-	pthread_mutex_lock(&philo->program->status);
-	if (philo->program->end_of_buffet == 1)
+	pthread_mutex_lock(&philo->table->status);
+	if (philo->table->end_of_buffet == 1)
 	{
-		pthread_mutex_unlock(&philo->program->status);
+		pthread_mutex_unlock(&philo->table->status);
 		return ;
 	}
 	if (id == PH_FORK)
@@ -33,7 +33,7 @@ static void	ph_action(t_philo *philo, int id)
 	else if (id == PH_EAT)
 	{
 		print_message(philo, "is eating");
-		philo->time_of_last_plate = ph_get_time();
+		philo->time_of_last_plate = ft_get_time();
 	}
 	else if (id == PH_SLEEP)
 	{
@@ -42,7 +42,7 @@ static void	ph_action(t_philo *philo, int id)
 	}
 	else if (id == PH_THINK)
 		print_message(philo, "is thinking");
-	pthread_mutex_unlock(&philo->program->status);
+	pthread_mutex_unlock(&philo->table->status);
 }
 
 static void	*routine(void *philo_ptr)
@@ -51,48 +51,48 @@ static void	*routine(void *philo_ptr)
 
 	philo = philo_ptr;
 	if (philo->seat % 2 == 0)
-		ph_usleep(philo->program, philo->program->tte * 1000);
-	while (!philo->program->end_of_buffet)
+		ft_usleep(philo->table, philo->table->tte * 1000);
+	while (!philo->table->end_of_buffet)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		ph_action(philo, PH_FORK);
+		action(philo, PH_FORK);
 		if (philo->left_fork == philo->right_fork)
 			break ;
 		pthread_mutex_lock(philo->right_fork);
-		ph_action(philo, PH_FORK);
-		ph_action(philo, PH_EAT);
-		ph_usleep(philo->program, philo->program->tte * 1000);
+		action(philo, PH_FORK);
+		action(philo, PH_EAT);
+		ft_usleep(philo->table, philo->table->tte * 1000);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
-		ph_action(philo, PH_SLEEP);
-		ph_usleep(philo->program, philo->program->tts * 1000);
-		ph_action(philo, PH_THINK);
+		action(philo, PH_SLEEP);
+		ft_usleep(philo->table, philo->table->tts * 1000);
+		action(philo, PH_THINK);
 	}
 	if (philo->left_fork == philo->right_fork)
 		pthread_mutex_unlock(philo->right_fork);
 	return (NULL);
 }
 
-int	ph_buffet(t_table *program)
+int	lunch(t_table *table)
 {
 	int		a;
 	t_philo	*philo;
 
 	a = 0;
-	program->time_at_start = ph_get_time();
-	ph_init_philo(program);
-	while (a < program->nb_philo)
+	table->time_at_start = ft_get_time();
+	ph_init_philo(table);
+	while (a < table->nb_philo)
 	{
-		philo = &program->philo[a];
+		philo = &table->philo[a];
 		if (pthread_create(&philo->thread_id, NULL, routine, philo))
 		{
-			pthread_mutex_lock(&program->status);
-			program->end_of_buffet = 1;
-			pthread_mutex_unlock(&program->status);
+			pthread_mutex_lock(&table->status);
+			table->end_of_buffet = 1;
+			pthread_mutex_unlock(&table->status);
 			return (1);
 		}
 		a++;
 	}
-	ph_wait_end_of_buffet(program);
+	ph_wait_end_of_buffet(table);
 	return (0);
 }

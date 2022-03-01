@@ -12,21 +12,21 @@
 
 #include "philosophers.h"
 
-void	ph_usleep(t_table *program, long long time_limit)
+void	ft_usleep(t_table *table, long long time_limit)
 {
 	long long	start;
 
-	start = ph_get_time();
-	while (ph_get_time() - start < time_limit / 1000)
+	start = ft_get_time();
+	while (ft_get_time() - start < time_limit / 1000)
 	{
-		if (program->nb_philo < 100)
+		if (table->nb_philo < 100)
 			usleep(100);
 		else
 			usleep(1000);
 	}
 }
 
-long long	ph_get_time(void)
+long long	ft_get_time(void)
 {
 	struct timeval	time;
 
@@ -39,23 +39,23 @@ long	ft_atol(const char *str)
 	long	result;
 	size_t	res;
 	int		negative;
-	int		a;
+	int		i;
 
 	negative = 1;
 	res = 0;
-	a = 0;
-	while (str[a] && (str[a] == ' ' || (str[a] >= 9 && str[a] <= 13)))
-		a++;
-	if (str[a] == '-' || str[a] == '+')
+	i = 0;
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[a] == '-')
+		if (str[i] == '-')
 			negative = -negative;
-		a++;
+		i++;
 	}
-	while (str[a] >= '0' && str[a] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + str[a] - '0';
-		a++;
+		res = res * 10 + str[i] - '0';
+		i++;
 	}
 	result = res * negative;
 	return (result);
@@ -63,15 +63,15 @@ long	ft_atol(const char *str)
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	a;
+	size_t	i;
 	char	*str;
 
 	str = s;
-	a = 0;
-	while (a < n)
+	i = 0;
+	while (i < n)
 	{
-		str[a] = '\0';
-		a++;
+		str[i] = '\0';
+		i++;
 	}
 }
 

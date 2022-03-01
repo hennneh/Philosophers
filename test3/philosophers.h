@@ -19,11 +19,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define PH_ERRMESSAGE "\n\e[1m\e[31mError: Incorrect number of args,\
-correct utilisation is :\e[0m\n\
-\e[32m./philo [number of philo] [time to die] \
-[time to eat] [time to sleep] [optional number of plates]\e[0m\n\n"
-
 # define PH_FORK 1
 # define PH_EAT 2
 # define PH_SLEEP 3
@@ -55,24 +50,24 @@ struct s_philo
 	pthread_t		thread_id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	t_table			*program;
+	t_table			*table;
 };
 
-int			ft_exit(t_table *program);
-int			ft_free(t_table *program);
+int			ft_exit(t_table *table);
+int			ft_free(t_table *table);
 //int		is_valid(char *av);
 //int		error_check(int ac, char **av);
 //int		main(int ac, char **av);
-//int		ph_check_end(t_table *program);
-void		ph_wait_end_of_buffet(t_table *program);
-void		ph_init_philo(t_table *program);
-int			set_table(int ac, char **av, t_table *program);
+//int		ph_check_end(t_table *table);
+void		ph_wait_end_of_buffet(t_table *table);
+void		ph_init_philo(t_table *table);
+int			set_table(int ac, char **av, t_table *table);
 void		print_message(t_philo *philo, char *status);
-//void		ph_action(t_philo *philo, int id);
+//void		action(t_philo *philo, int id);
 //void		*routine(void *philo_ptr);
-int			ph_buffet(t_table *program);
-void		ph_usleep(t_table *program, long long time_limit);
-long long	ph_get_time(void);
+int			lunch(t_table *table);
+void		ft_usleep(t_table *table, long long time_limit);
+long long	ft_get_time(void);
 long		ft_atol(const char *str);
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);

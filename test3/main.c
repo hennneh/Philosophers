@@ -66,7 +66,7 @@ static int	error_check(int ac, char **av)
 	a = 1;
 	if (ac < 5 || ac > 6)
 	{
-		write (2, PH_ERRMESSAGE, 181);
+		write (2, "Error: Input\n", 13);
 		return (1);
 	}
 	while (av[a])
@@ -86,7 +86,7 @@ int	main(int ac, char **av)
 	{
 		if (set_table(ac, av, &table) == 1)
 			return (1);
-		if (ph_buffet(&table) == 1)
+		if (lunch(&table) == 1)
 			return (ft_exit(&table));
 	}
 	else
