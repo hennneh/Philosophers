@@ -6,7 +6,7 @@
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 11:18:45 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/03/02 11:18:50 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:52:19 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 void	ft_check_args(void)
 {
-	printf(" ____________________________________________________ \n");
-	printf("|            Please enter 4 or 5 arguments           |\n");
-	printf("|____________________________________________________|\n");
-	printf("|             [1][Number of philosophers]            |\n");
-	printf("|             [2][Time to die]                       |\n");
-	printf("|             [3][Time to eat]                       |\n");
-	printf("|             [4][Time to sleep]                     |\n");
-	printf("|             [5][Number of meals]                   |\n");
-	printf("|____________________________________________________|\n");
+	printf("Error: Arguments\n");
 }
 
 int	ft_start_philo(t_arg *args)
