@@ -12,11 +12,6 @@
 
 #include "../includes/philo_bonus.h"
 
-void	ft_check_args(void)
-{
-	printf("Error: Arguments\n");
-}
-
 int	ft_start_philo(t_arg *args)
 {
 	int	i;
@@ -62,7 +57,7 @@ static int	ft_check_valid(int argc, char **argv)
 
 	if (argc < 5 || argc > 6)
 	{
-		ft_check_args();
+		printf("Error: Arguments\n");
 		return (1);
 	}
 	i = 1;
