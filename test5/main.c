@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:03:03 by hlehmann          #+#    #+#             */
-/*   Updated: 2022/02/09 09:03:05 by hlehmann         ###   ########.fr       */
+/*   Updated: 2022/03/09 10:49:48 by hlehmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ int	ft_free(t_table *table)
 
 int	ft_exit(t_table *table)
 {
-	int		a;
+	int		i;
 	t_philo	*philo;
 
-	a = 0;
-	while (a < table->nb_philo)
+	i = 0;
+	while (i < table->nb_philo)
 	{
-		philo = &table->philo[a];
+		philo = &table->philo[i];
 		pthread_join(philo->thread_id, NULL);
-		a++;
+		i++;
 	}
-	a = 0;
-	while (a < table->nb_philo)
+	i = 0;
+	while (i < table->nb_philo)
 	{
-		pthread_mutex_destroy(&table->forks[a]);
-		a++;
+		pthread_mutex_destroy(&table->forks[i]);
+		i++;
 	}
 	pthread_mutex_destroy(&table->status);
 	return (ft_free(table));
@@ -45,35 +45,35 @@ int	ft_exit(t_table *table)
 
 static int	is_valid(char *argv)
 {
-	int	a;
+	int	i;
 
-	a = 0;
-	if (!argv || !argv[a])
+	i = 0;
+	if (!argv || !argv[i])
 		return (1);
-	while (argv[a])
+	while (argv[i])
 	{
-		if (argv[a] < '0' || argv[a] > '9')
+		if (argv[i] < '0' || argv[i] > '9')
 			return (1);
-		a++;
+		i++;
 	}
 	return (0);
 }
 
 static int	error_check(int argc, char **argv)
 {
-	int	a;
+	int	i;
 
-	a = 1;
+	i = 1;
 	if (argc < 5 || argc > 6)
 	{
 		write (2, "Error: Input\n", 13);
 		return (1);
 	}
-	while (argv[a])
+	while (argv[i])
 	{
-		if (is_valid(argv[a]) == 1)
+		if (is_valid(argv[i]) == 1)
 			return (1);
-		a++;
+		i++;
 	}
 	return (0);
 }
