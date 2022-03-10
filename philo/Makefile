@@ -5,28 +5,27 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hlehmann <hlehmann@student.42wolfsburg.de  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/02/01 08:28:22 by hlehmann          #+#    #+#              #
-#    Updated: 2022/02/09 09:14:35 by hlehmann         ###   ########.fr        #
+#    Created: 2022/02/22 14:28:37 by hlehmann          #+#    #+#              #
+#    Updated: 2022/02/22 14:28:41 by hlehmann         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pthread
-RM = rm -f
-
+FLAGS = -Wall -Werror -Wextra -pthread
+RM = rm -rf
 SRC =	main.c \
+		lunch.c \
 		utils.c \
-		check.c \
-		actions.c \
-		end.c \
+		init.c \
+		action.c
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
@@ -34,6 +33,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all clean fclean re
